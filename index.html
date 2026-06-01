@@ -590,32 +590,8 @@
       z-index: 0;
     }
 
-    /* Setas entre os passos (desktop) */
-    .como-arrow {
-      position: absolute;
-      top: 60px;
-      transform: translateY(-50%);
-      z-index: 3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      background: #F5F0E8;
-      border-radius: 50%;
-      border: 1px solid rgba(236,185,177,0.6);
-    }
-
-    .como-arrow svg {
-      width: 12px;
-      height: 12px;
-      stroke: var(--rose);
-      stroke-width: 2;
-      fill: none;
-    }
-
-    .como-arrow-1 { left: calc(33.33% - 12px); }
-    .como-arrow-2 { left: calc(66.66% - 12px); }
+    /* Setas entre os passos — ocultas */
+    .como-arrow { display: none; }
 
     .como-step {
       display: flex;
