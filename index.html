@@ -391,7 +391,7 @@
 
     .sobre-oval-wrap {
       position: relative;
-      width: clamp(280px, 38vw, 420px);
+      width: clamp(300px, 42vw, 460px);
     }
 
     .sobre-oval {
@@ -401,16 +401,33 @@
       object-position: top center;
       border-radius: 50% / 50%;
       display: block;
-      filter: saturate(0.92) brightness(1.02);
+      filter: saturate(0.95) brightness(1.03);
+      box-shadow: 0 24px 60px rgba(60,50,40,0.22);
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s;
     }
 
-    /* Moldura sutil */
+    .sobre-oval:hover {
+      transform: scale(1.025);
+      box-shadow: 0 32px 72px rgba(60,50,40,0.28);
+    }
+
+    /* Moldura dupla com destaque */
     .sobre-oval-wrap::before {
       content: '';
       position: absolute;
-      inset: -10px;
+      inset: -14px;
       border-radius: 50% / 50%;
-      border: 1.5px solid rgba(236, 185, 177, 0.45);
+      border: 1.5px solid rgba(236, 185, 177, 0.55);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .sobre-oval-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -28px;
+      border-radius: 50% / 50%;
+      border: 1px solid rgba(236, 185, 177, 0.20);
       pointer-events: none;
       z-index: 1;
     }
@@ -466,7 +483,7 @@
       }
 
       .sobre-oval-wrap {
-        width: clamp(180px, 52vw, 260px);
+        width: clamp(220px, 68vw, 320px);
         margin: 0 auto;
       }
 
@@ -686,7 +703,12 @@
       font-size: 0.7rem;
     }
 
-    /* Carrossel mobile Como Trabalhamos */
+    /* Hint de swipe (só mobile) */
+    .como-swipe-hint {
+      display: none;
+    }
+
+    /* Dots indicadores (só mobile) */
     .como-dots {
       display: none;
     }
@@ -695,36 +717,89 @@
       .como-arrow { display: none; }
 
       #como {
-        padding: 64px 0 80px;
+        padding: 56px 0 72px;
       }
 
       .como-header {
         padding: 0 28px;
+        margin-bottom: 32px;
       }
 
-      /* Track swipeable */
+      /* Hint de swipe */
+      .como-swipe-hint {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 20px;
+        padding: 0 28px;
+      }
+
+      .como-swipe-hint span {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300;
+        font-size: 0.65rem;
+        letter-spacing: 0.18em;
+        color: var(--olive);
+        text-transform: uppercase;
+        opacity: 0.75;
+      }
+
+      @keyframes swipe-nudge {
+        0%, 100% { transform: translateX(0); opacity: 0.5; }
+        50%       { transform: translateX(6px); opacity: 1; }
+      }
+
+      .como-swipe-hint svg {
+        animation: swipe-nudge 1.8s ease-in-out infinite;
+        flex-shrink: 0;
+      }
+
+      /* Track swipeable — touch-action: pan-x evita scroll vertical ao arrastar */
       .como-steps {
         display: flex;
         grid-template-columns: unset;
         gap: 0;
         max-width: unset;
         overflow-x: scroll;
+        overflow-y: hidden;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
         scrollbar-width: none;
-        padding: 20px 28px 12px;
+        padding: 20px 10vw 16px;
         margin: 0;
       }
 
       .como-steps::-webkit-scrollbar { display: none; }
-
       .como-steps::before { display: none; }
 
+      /* Card com destaque — mostra peek do próximo */
       .como-step {
-        flex: 0 0 78vw;
-        max-width: 300px;
-        scroll-snap-align: center;
-        padding: 0 12px;
+        flex: 0 0 80vw;
+        max-width: 320px;
+        scroll-snap-align: start;
+        padding: 28px 20px 32px;
+        background: #FDFAF6;
+        border-radius: 16px;
+        margin-right: 16px;
+        box-shadow: 0 4px 24px rgba(80,70,60,0.09);
+      }
+
+      .como-step:last-child {
+        margin-right: 10vw;
+      }
+
+      /* Ícone maior no mobile */
+      .como-icon-wrap {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 24px;
+      }
+
+      .como-step-title {
+        font-size: 2rem;
+        margin-bottom: 16px;
       }
 
       /* Dots indicadores */
@@ -732,20 +807,24 @@
         display: flex;
         justify-content: center;
         gap: 8px;
-        margin-top: 20px;
+        margin-top: 16px;
+        padding-bottom: 4px;
       }
 
       .como-dot {
-        width: 6px;
-        height: 6px;
+        width: 7px;
+        height: 7px;
         border-radius: 50%;
-        background: rgba(112,112,90,0.3);
-        transition: background 0.3s, transform 0.3s;
+        background: rgba(112,112,90,0.25);
+        transition: background 0.3s, transform 0.3s, width 0.3s;
+        cursor: pointer;
       }
 
       .como-dot.active {
         background: var(--rose);
-        transform: scale(1.3);
+        transform: scale(1.25);
+        width: 20px;
+        border-radius: 4px;
       }
     }
 
@@ -1756,6 +1835,14 @@
         <span class="como-ornament-line"></span>
       </div>
       <h2 class="como-title">Como Trabalhamos</h2>
+    </div>
+
+    <!-- Hint swipe — visível só no mobile via CSS -->
+    <div class="como-swipe-hint">
+      <span>arraste para ver</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
     </div>
 
     <div class="como-steps reveal-stagger">
