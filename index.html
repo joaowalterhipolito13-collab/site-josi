@@ -420,7 +420,7 @@
 
       .sobre-grid {
         grid-template-columns: 1fr;
-        gap: 56px;
+        gap: 32px;
       }
 
       .sobre-right {
@@ -428,34 +428,45 @@
       }
 
       .sobre-oval-wrap {
-        width: clamp(220px, 60vw, 320px);
+        width: clamp(180px, 52vw, 260px);
         margin: 0 auto;
       }
 
+      /* Galhos menores e mais discretos no mobile */
       .sobre-galho {
-        bottom: -40px;
-        right: -40px;
-        width: clamp(120px, 28vw, 200px);
+        bottom: -24px;
+        right: -24px;
+        width: clamp(80px, 20vw, 130px);
       }
 
       .sobre-galho-left {
-        top: -28px;
-        left: -30px;
-        width: clamp(80px, 18vw, 130px);
+        top: -16px;
+        left: -16px;
+        width: clamp(60px, 14vw, 90px);
       }
 
       .sobre-heart {
-        margin-top: 32px;
+        width: 48px;
+        margin-bottom: 16px;
+      }
+
+      .sobre-title {
+        font-size: clamp(2rem, 9vw, 2.6rem);
+        margin-bottom: 20px;
+      }
+
+      .sobre-divider {
+        margin-bottom: 20px;
+      }
+
+      .sobre-text {
+        font-size: 0.82rem;
       }
     }
 
     @media (max-width: 480px) {
       #sobre {
-        padding: 64px 24px 80px;
-      }
-
-      .sobre-title {
-        font-size: clamp(2.2rem, 10vw, 3rem);
+        padding: 52px 24px 64px;
       }
     }
 
