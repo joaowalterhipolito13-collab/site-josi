@@ -236,9 +236,10 @@
         height: 54px;
       }
 
-      /* Hero bg: posição ajustada para mobile portrait */
+      /* Hero bg: imagem dedicada para mobile portrait */
       .hero-bg {
-        background-position: center 30%;
+        background-image: url('backgorund-hero-mobile.png');
+        background-position: center center;
       }
 
       .menu-toggle {
@@ -564,13 +565,40 @@
       content: '';
       position: absolute;
       top: 60px;
-      left: calc(16.66% );
+      left: calc(16.66%);
       right: calc(16.66%);
       height: 1px;
       background: var(--rose);
       opacity: 0.5;
       z-index: 0;
     }
+
+    /* Setas entre os passos (desktop) */
+    .como-arrow {
+      position: absolute;
+      top: 60px;
+      transform: translateY(-50%);
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background: #F5F0E8;
+      border-radius: 50%;
+      border: 1px solid rgba(236,185,177,0.6);
+    }
+
+    .como-arrow svg {
+      width: 12px;
+      height: 12px;
+      stroke: var(--rose);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .como-arrow-1 { left: calc(33.33% - 12px); }
+    .como-arrow-2 { left: calc(66.66% - 12px); }
 
     .como-step {
       display: flex;
@@ -664,6 +692,8 @@
     }
 
     @media (max-width: 860px) {
+      .como-arrow { display: none; }
+
       #como {
         padding: 64px 0 80px;
       }
@@ -1729,6 +1759,14 @@
     </div>
 
     <div class="como-steps reveal-stagger">
+
+      <!-- Setas conectoras (desktop) -->
+      <div class="como-arrow como-arrow-1">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="como-arrow como-arrow-2">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
 
       <!-- Pré -->
       <div class="como-step">
